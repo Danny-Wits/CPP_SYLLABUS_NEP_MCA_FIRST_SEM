@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-// references act the same as pointers,but it is dereferenced
+// references act the same as pointers,but they are dereferenced
 // references are also used to alias(give a nickname to) a variable
 void increment(int &x)
 {
