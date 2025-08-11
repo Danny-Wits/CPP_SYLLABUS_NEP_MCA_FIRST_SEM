@@ -80,3 +80,7 @@ Students can use these examples for lab preparation, assignments, and final exam
 - [Function Template](unit5/09_function_template.cpp)
 - [Class Template](unit5/10_class_template.cpp)
 - [Exception Handling](unit5/11_exception_handling.cpp)
+
+### Extra Examples and Practice Programs
+
+- [Calculator](examples/calculator.cc)
