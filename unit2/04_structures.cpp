@@ -14,11 +14,13 @@ using namespace std;
 
 struct Student
 {
+private:
     // member variables
     int roll_no;
     string name;
     int marks;
 
+public:
     // constructor
     Student(int roll_no, string name, int marks)
     {
