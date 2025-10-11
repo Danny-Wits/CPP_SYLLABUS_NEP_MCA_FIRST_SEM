@@ -4,8 +4,8 @@
 #include <thread>
 #include <algorithm>
 using namespace std;
-const int LIMIT = 4;
-const int ANIMATION_DELAY = 2000;
+const int LIMIT = 5;
+const int ANIMATION_DELAY = 700;
 class Disk
 {
 
@@ -88,7 +88,7 @@ public:
 void move_disk_from_to(Tower &t1, Tower &t2)
 {
     system("clear");
-    cout << "Move : " << t1.peek_disk() << " from " << t1.index << " to " << t2.index << endl;
+    cout << "Move : D" << t1.peek_disk() << " from T" << t1.index << " to T" << t2.index << endl;
     t2.add_disk(t1.remove_disk());
 }
 
