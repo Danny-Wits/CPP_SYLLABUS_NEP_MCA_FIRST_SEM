@@ -2,7 +2,10 @@
 #include <vector>
 #include <windows.h>
 #include <thread>
+#include <algorithm>
 using namespace std;
+const int LIMIT = 4;
+const int ANIMATION_DELAY = 2000;
 class Disk
 {
 
@@ -17,9 +20,9 @@ public:
 };
 class Tower
 {
-    int index;
     int limit;
     vector<Disk> pole;
+    int index;
 
 public:
     Tower(int index, int limit = 10)
@@ -32,7 +35,9 @@ public:
         if (d.value <= peek_disk())
             pole.push_back(d);
         else
-            pole.push_back(d);
+        {
+            throw runtime_error("Invalid disk");
+        }
     }
     int peek_disk()
     {
@@ -78,32 +83,46 @@ public:
         }
     }
     friend void move_disk_from_to(Tower &t1, Tower &t2);
+    friend void draw_all(Tower t1, Tower t2, Tower t3);
 };
 void move_disk_from_to(Tower &t1, Tower &t2)
 {
+    system("clear");
+    cout << "Move : " << t1.peek_disk() << " from " << t1.index << " to " << t2.index << endl;
     t2.add_disk(t1.remove_disk());
 }
-void draw_all(Tower t0, Tower t1, Tower t2)
+
+void draw_all(Tower t1, Tower t2, Tower t3)
 {
-    system("clear");
-    t0.draw();
-    t1.draw();
-    t2.draw();
-    Sleep(1000);
+    vector<Tower *> towers = {&t1, &t2, &t3};
+    sort(towers.begin(), towers.end(), [](Tower *a, Tower *b)
+         { return a->index < b->index; });
+    for (Tower *t : towers)
+    {
+        t->draw();
+    }
+    Sleep(ANIMATION_DELAY);
+}
+void hanoi(int limit, Tower &start, Tower &end, Tower &other)
+{
+    if (limit > 0)
+    {
+        hanoi(limit - 1, start, other, end);
+        move_disk_from_to(start, end);
+        draw_all(start, end, other);
+        hanoi(limit - 1, other, end, start);
+    }
 }
 
 int main()
 {
-    int limit = 10;
-    Tower t0(0, limit);
-    Tower t1(1, limit);
-    Tower t2(2, limit);
+    int limit = LIMIT;
+    Tower t0(1, limit);
+    Tower t1(2, limit);
+    Tower t2(3, limit);
+
     t0.fill(limit);
-    for (int i = 0; i < limit; i++)
-    {
-        move_disk_from_to(t0, t1);
-        draw_all(t0, t1, t2);
-    }
+    hanoi(limit, t0, t2, t1);
 
     return 0;
 }
