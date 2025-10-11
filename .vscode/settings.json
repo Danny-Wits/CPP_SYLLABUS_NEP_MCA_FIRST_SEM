@@ -44,6 +44,8 @@
         "streambuf": "cpp",
         "map": "cpp",
         "thread": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "ctime": "cpp",
+        "ratio": "cpp"
     }
 }

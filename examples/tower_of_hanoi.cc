@@ -1,11 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
-#include <thread>
 #include <algorithm>
 using namespace std;
-const int LIMIT = 5;
-const int ANIMATION_DELAY = 700;
+const int LIMIT = 15;
+const int ANIMATION_DELAY = 0;
 class Disk
 {
 
